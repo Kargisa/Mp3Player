@@ -1,0 +1,24 @@
+﻿<Window x:Class="Abschussprojekt_wolf.AlreadyExists"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Abschussprojekt_wolf"
+        mc:Ignorable="d"
+        Title="AlreadyExists" Height="239.652" Width="480"
+        Closing="Window_Closing"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Der Song ist schon in der Playlist.&#xD;&#xA;&#xD;&#xA;Wollen Sie ihn trotzdem hinzufügen?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="454" Height="98" FontSize="20" FontFamily="Verdana"/>
+        <Button x:Name="btnYes" Content="YES" HorizontalAlignment="Left" Margin="39,0,0,25" Width="101" Height="54" FontFamily="Verdana" FontSize="20" VerticalAlignment="Bottom" Click="btnYes_Click"/>
+        <Button x:Name="btnNo" Content="NO" HorizontalAlignment="Right" Margin="0,0,40,25" VerticalAlignment="Bottom" Width="101" Height="54" FontFamily="Verdana" FontSize="20" Click="btnNo_Click"/>
+
+    </Grid>
+</Window>
