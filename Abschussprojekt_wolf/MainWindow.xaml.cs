@@ -268,7 +268,8 @@ namespace Abschussprojekt_wolf
                 }
                 else if (dtgPlaylist.SelectedItem != null)
                 {
-                    Musik musik = new Musik(txtTitel.Text, txtArtist.Text, txtAlbum.Text, editDuration, dialog.FileName);
+
+                    Musik musik = new Musik(txtTitel.Text, txtArtist.Text, txtAlbum.Text, editDuration, musikClass.Path);
                     musikList.Remove(musikClass);
                     saveList.Remove(musikClass);
                     AddForAdd(musik);

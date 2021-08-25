@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
         <MediaElement Height="60" LoadedBehavior="Manual" x:Name="mediaElement" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63" Margin="485,0,0,0" Grid.Column="1"/>
         <Button x:Name="btnMusicAdd1" Content="Add Music" HorizontalAlignment="Left" Margin="10,308,0,0" VerticalAlignment="Top" Width="137" Height="40" Click="btnMusicAdd1_Click" FontFamily="Verdana"/>
-        <DataGrid x:Name="dtgPlaylist" Margin="323,56,249,4" SelectionChanged="dtgPlaylist_SelectionChanged" FontSize="16" FontFamily="Verdana" Grid.ColumnSpan="2" IsReadOnly="True" AutoGeneratingColumn="dtgPlaylist_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dtgPlaylist" Margin="323,56,249,4" SelectionChanged="dtgPlaylist_SelectionChanged" FontSize="16" FontFamily="Verdana" Grid.ColumnSpan="2" IsReadOnly="True" AutoGeneratingColumn="dtgPlaylist_AutoGeneratingColumn" SelectionMode="Single"/>
         <Label Content="Title:" Margin="27,101,0,0" VerticalAlignment="Top" FontFamily="Verdana" HorizontalAlignment="Left" Width="46"/>
         <Label Content="Artist:" Margin="27,158,0,0" VerticalAlignment="Top" FontFamily="Verdana" HorizontalAlignment="Left" Width="56"/>
         <Label Content="Album:" Margin="27,217,0,0" VerticalAlignment="Top" FontFamily="Verdana" HorizontalAlignment="Left" Width="56"/>
