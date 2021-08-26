@@ -62,17 +62,31 @@ namespace Abschussprojekt_wolf
         ObservableCollection<Musik> musikList = new ObservableCollection<Musik>();
         AlreadyExists exist = new AlreadyExists();
         LoadingWindow load = new LoadingWindow();
-        HelpWindow w = new HelpWindow();
+        HelpWindow helpWin = new HelpWindow();
         public MainWindow()
         {
             InitializeComponent();
             v = false;
+            IconMeth();
             load.Show();
             SliderValue();
             dtgPlaylist.ItemsSource = musikList;
             FullTimer();
             SearchForFiles();
             load.Close();
+        }
+        private void IconMeth()
+        {
+            try
+            {
+                Uri iconUri = new Uri(@"..\..\Icon\silence_matty.png", UriKind.Relative);
+                Icon = BitmapFrame.Create(iconUri);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Das Icon konnte nicht gefunden werden.");
+            }
+            
         }
         private void SliderValue()
         {
@@ -425,7 +439,7 @@ namespace Abschussprojekt_wolf
 
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
-            w.Show();
+            helpWin.Show();
         }
 
         private void btnResetEdit_Click(object sender, RoutedEventArgs e)
@@ -468,6 +482,5 @@ namespace Abschussprojekt_wolf
         {
             Application.Current.Shutdown();
         }
-
     }
 }
