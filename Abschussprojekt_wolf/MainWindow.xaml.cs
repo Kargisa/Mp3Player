@@ -22,6 +22,7 @@ using System.Windows.Threading;
 using Microsoft.Win32;
 using System.IO;
 using Newtonsoft.Json;
+using System.Windows.Controls.Primitives;
 //using System.Text.Json;
 
 namespace Abschussprojekt_wolf
@@ -42,9 +43,11 @@ namespace Abschussprojekt_wolf
         string start = "▶";
         string pause = "⏸";
         string weiter = "⏯";
+        string shuffle = "🔁";
         string title;
         string artist;
         string album;
+        int selction;
         bool v = true;
         bool y = false;
         bool x = true;
@@ -52,6 +55,7 @@ namespace Abschussprojekt_wolf
         string button;
         Musik musikClass;
         TimeSpan editDuration;
+        Random rand = new Random();
         List<string> morePaths = new List<string>();
         List<Musik> saveList = new List<Musik>();
         CommonOpenFileDialog dialog = new CommonOpenFileDialog();
@@ -447,9 +451,23 @@ namespace Abschussprojekt_wolf
                 e.Cancel = true;
             }
         }
+        private void btnShuffle_Click(object sender, RoutedEventArgs e)
+        {
+            selction = dtgPlaylist.SelectedIndex;
+            while (selction == dtgPlaylist.SelectedIndex)
+            {
+                selction = rand.Next(0, musikList.Count);
+            }
+            dtgPlaylist.SelectedIndex = selction;
+            btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+        }
+
+
+
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
+
     }
 }

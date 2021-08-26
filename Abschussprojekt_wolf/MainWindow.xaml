@@ -22,30 +22,32 @@
             <RowDefinition Height="232*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="311*"/>
-            <ColumnDefinition Width="274*"/>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition Width="548*"/>
         </Grid.ColumnDefinitions>
-        <MediaElement Height="60" LoadedBehavior="Manual" x:Name="mediaElement" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63" Margin="485,0,0,0" Grid.Column="1"/>
+        <MediaElement Height="60" LoadedBehavior="Manual" x:Name="mediaElement" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63" Margin="485,0,0,0" Grid.Column="2"/>
         <Button x:Name="btnMusicAdd1" Content="Add Music" HorizontalAlignment="Left" Margin="10,308,0,0" VerticalAlignment="Top" Width="137" Height="40" Click="btnMusicAdd1_Click" FontFamily="Verdana"/>
-        <DataGrid x:Name="dtgPlaylist" Margin="323,56,249,4" SelectionChanged="dtgPlaylist_SelectionChanged" FontSize="16" FontFamily="Verdana" Grid.ColumnSpan="2" IsReadOnly="True" AutoGeneratingColumn="dtgPlaylist_AutoGeneratingColumn" SelectionMode="Single"/>
+        <DataGrid x:Name="dtgPlaylist" Margin="36,56,249,4" SelectionChanged="dtgPlaylist_SelectionChanged" FontSize="16" FontFamily="Verdana" Grid.ColumnSpan="2" IsReadOnly="True" AutoGeneratingColumn="dtgPlaylist_AutoGeneratingColumn" SelectionMode="Single" Grid.Column="1" IsSynchronizedWithCurrentItem="False" Cursor=""/>
         <Label Content="Title:" Margin="27,101,0,0" VerticalAlignment="Top" FontFamily="Verdana" HorizontalAlignment="Left" Width="46"/>
         <Label Content="Artist:" Margin="27,158,0,0" VerticalAlignment="Top" FontFamily="Verdana" HorizontalAlignment="Left" Width="56"/>
         <Label Content="Album:" Margin="27,217,0,0" VerticalAlignment="Top" FontFamily="Verdana" HorizontalAlignment="Left" Width="56"/>
-        <TextBox x:Name="txtTitel" HorizontalAlignment="Left" Height="26" Margin="100,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontFamily="Verdana"/>
-        <TextBox x:Name="txtArtist" HorizontalAlignment="Left" Height="26" Margin="100,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontFamily="Verdana"/>
-        <TextBox x:Name="txtAlbum" HorizontalAlignment="Left" Height="26" Margin="100,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontFamily="Verdana"/>
-        <Button x:Name="btnMusikRemove" Content="Remove Music" HorizontalAlignment="Left" Margin="152,308,0,0" VerticalAlignment="Top" Width="137" Height="40" Click="btnMusikRemove_Click" FontFamily="Verdana"/>
+        <TextBox x:Name="txtTitel" HorizontalAlignment="Left" Height="26" Margin="100,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontFamily="Verdana" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtArtist" HorizontalAlignment="Left" Height="26" Margin="100,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontFamily="Verdana" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtAlbum" HorizontalAlignment="Left" Height="26" Margin="100,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontFamily="Verdana" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnMusikRemove" Content="Remove Music" HorizontalAlignment="Left" Margin="152,308,0,0" VerticalAlignment="Top" Width="137" Height="40" Click="btnMusikRemove_Click" FontFamily="Verdana" Grid.ColumnSpan="2"/>
         <Button x:Name="btnEdit" Content="Edit" Margin="85,353,0,0" Height="40" Click="btnEdit_Click" FontFamily="Verdana" VerticalAlignment="Top" HorizontalAlignment="Left" Width="129"/>
         <Label Content="Bitte alle Felder ausfüllen:" HorizontalAlignment="Left" Margin="100,67,0,0" VerticalAlignment="Top" Width="174" Height="29" FontFamily="Verdana"/>
-        <Button x:Name="btnPlay" Content="▶" Margin="0,4,249,0" Height="50" Click="btnPlay_Click" FontFamily="Verdana" Grid.Column="1" IsCancel="True" FontSize="20" HorizontalAlignment="Right" Width="100" Grid.Row="2" VerticalAlignment="Top"/>
-        <ProgressBar x:Name="pgbMusik" Height="Auto" Margin="424,2,250,6" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <Button x:Name="btnReset" Content="🔄" Margin="294,3,0,0" Height="50" FontFamily="Verdana" Click="btnReset_Click" FontSize="20" HorizontalAlignment="Left" Width="100" Grid.Row="2" VerticalAlignment="Top"/>
-        <Slider x:Name="sldVolume" Margin="294,53,250,0" ValueChanged="sldVolume_ValueChanged" Maximum="1" Grid.ColumnSpan="2" Grid.Row="2" Height="28" VerticalAlignment="Top" Value="0.5"/>
+        <Button x:Name="btnPlay" Content="▶" Margin="0,4,249,0" Height="50" Click="btnPlay_Click" FontFamily="Verdana" Grid.Column="2" IsCancel="True" FontSize="20" HorizontalAlignment="Right" Width="100" Grid.Row="2" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="pgbMusik" Height="Auto" Margin="137,2,250,6" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btnReset" Content="🔄" Margin="7,3,0,0" Height="50" FontFamily="Verdana" Click="btnReset_Click" FontSize="20" HorizontalAlignment="Left" Width="100" Grid.Row="2" VerticalAlignment="Top" Grid.Column="1"/>
+        <Slider x:Name="sldVolume" Margin="7,53,250,0" ValueChanged="sldVolume_ValueChanged" Maximum="1" Grid.ColumnSpan="2" Grid.Row="2" Height="28" VerticalAlignment="Top" Value="0.5" Grid.Column="1"/>
         <CheckBox x:Name="chbNoAlbum" Content="No Album" HorizontalAlignment="Left" Margin="100,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="129" FontFamily="Verdana" Height="19" Click="chbNoAlbum_Clicked"/>
         <Button x:Name="btnHelp" Content="HELP" Margin="10,0,0,10" Height="40" FontFamily="Verdana" Click="btnHelp_Click" Grid.Row="2" HorizontalAlignment="Left" Width="129" VerticalAlignment="Bottom"/>
         <Button x:Name="btnResetEdit" Content="Reset Edit" HorizontalAlignment="Left" Margin="85,398,0,0" VerticalAlignment="Top" Width="129" Height="40" FontFamily="Verdana" Click="btnResetEdit_Click" Visibility="Hidden"/>
-        <Button x:Name="btnExit" Content="Exit" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" VerticalAlignment="Bottom" Height="58" FontSize="18" Click="btnExit_Click" HorizontalAlignment="Right" Width="79"/>
-        <Label x:Name="lblTimer" Content="00:00:00/00:00:00" HorizontalAlignment="Left" Margin="294,2,0,2" Grid.Row="1" Width="125"/>
-        <Label x:Name="lblNowPlaying" Content="" HorizontalAlignment="Left" Margin="294,86,0,0" VerticalAlignment="Top" Height="41" Width="598" Grid.ColumnSpan="2" FontFamily="Verdana" FontSize="24" Grid.Row="2"/>
+        <Button x:Name="btnExit" Content="Exit" Grid.Column="2" Margin="0,0,10,10" Grid.Row="2" VerticalAlignment="Bottom" Height="58" FontSize="18" Click="btnExit_Click" HorizontalAlignment="Right" Width="79"/>
+        <Label x:Name="lblTimer" Content="00:00:00/00:00:00" HorizontalAlignment="Left" Margin="7,2,0,2" Grid.Row="1" Width="125" Grid.Column="1"/>
+        <Label x:Name="lblNowPlaying" Content="" HorizontalAlignment="Left" Margin="7,86,0,0" VerticalAlignment="Top" Height="41" Width="598" Grid.ColumnSpan="2" FontFamily="Verdana" FontSize="24" Grid.Row="2" Grid.Column="1"/>
+        <Button x:Name="btnShuffle" Content="🔁" Margin="0,4,10,0" Grid.Row="2" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80" FontSize="20" FontFamily="Verdana" Click="btnShuffle_Click"/>
     </Grid>
 </Window>

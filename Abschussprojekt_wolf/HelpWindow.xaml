@@ -15,7 +15,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="10,0,0,10" Width="129" Height="40" FontFamily="Verdana" Click="btnClose_Click" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" Width="129" Height="40" FontFamily="Verdana" Click="btnClose_Click" VerticalAlignment="Bottom"/>
         <Label Content="Ein wahrer Krieger &#xD;&#xA;weiß wann&#xD;&#xA;eine Schlacht &#xD;&#xA;verloren ist" HorizontalAlignment="Left" Margin="220,168,0,0" VerticalAlignment="Top" Height="183" Width="353" FontFamily="Verdana" FontSize="36"/>
 
     </Grid>
