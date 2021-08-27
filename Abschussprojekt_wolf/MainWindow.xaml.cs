@@ -48,6 +48,7 @@ namespace Abschussprojekt_wolf
         string artist;
         string album;
         int selction;
+        int int_dtgIndx;
         bool v = true;
         bool y = false;
         bool x = true;
@@ -62,17 +63,17 @@ namespace Abschussprojekt_wolf
         ObservableCollection<Musik> musikList = new ObservableCollection<Musik>();
         AlreadyExists exist = new AlreadyExists();
         LoadingWindow load = new LoadingWindow();
-        HelpWindow helpWin = new HelpWindow();
         public MainWindow()
         {
             InitializeComponent();
             v = false;
-            IconMeth();
             load.Show();
+            IconMeth();
             SliderValue();
             dtgPlaylist.ItemsSource = musikList;
             FullTimer();
             SearchForFiles();
+            btnShuffle.Foreground = Brushes.White;
             load.Close();
         }
         private void IconMeth()
@@ -185,7 +186,7 @@ namespace Abschussprojekt_wolf
                             ClearTXT();
                         }
                     }
-                    catch (NullReferenceException)
+                    catch (InvalidOperationException)
                     {
                         MessageBox.Show("Bitte wählen Sie eine .mp3 Datei aus.");
                     }
@@ -300,6 +301,7 @@ namespace Abschussprojekt_wolf
         {
             try
             {
+                int_dtgIndx = dtgPlaylist.SelectedIndex;
                 if (btnPlay.Content.ToString() == start)
                 {
                     Musik path = (Musik)dtgPlaylist.SelectedItem;
@@ -359,6 +361,7 @@ namespace Abschussprojekt_wolf
                 pgbMusik.Maximum = secounds;
                 Duration duration = new Duration(TimeSpan.FromSeconds(secounds));
                 DoubleAnimation doubleanimation = new DoubleAnimation(secounds, duration);
+                doubleanimation.Completed += new EventHandler(Animation_ends);
                 if (btnPlay.Content.ToString() == start || x == false)
                 {
                     doubleanimation.From = 0;
@@ -392,6 +395,25 @@ namespace Abschussprojekt_wolf
                 btnPlay.Content = start;
             }
 
+        }
+
+        private void Animation_ends(object sender, EventArgs e)
+        {
+            if (btnShuffle.Foreground == Brushes.LightGreen)
+            {
+                ShuffleRandom();
+            }
+            else if (int_dtgIndx == musikList.Count - 1)
+            {
+                dtgPlaylist.SelectedIndex = 0;
+                btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            else
+            {
+                int_dtgIndx += 1;
+                dtgPlaylist.SelectedIndex = int_dtgIndx;
+                btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
         }
 
         private void DtClockTime_Tick(object sender, EventArgs e)
@@ -439,7 +461,7 @@ namespace Abschussprojekt_wolf
 
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
-            helpWin.Show();
+            System.Diagnostics.Process.Start("https://de.wikipedia.org/wiki/Dummheit");
         }
 
         private void btnResetEdit_Click(object sender, RoutedEventArgs e)
@@ -467,13 +489,66 @@ namespace Abschussprojekt_wolf
         }
         private void btnShuffle_Click(object sender, RoutedEventArgs e)
         {
+            if (btnShuffle.Foreground == Brushes.White)
+            {
+                btnShuffle.Foreground = Brushes.LightGreen;
+            }
+            else
+            {
+                btnShuffle.Foreground = Brushes.White;
+            }
+        }
+        private void ShuffleRandom()
+        {
             selction = dtgPlaylist.SelectedIndex;
-            while (selction == dtgPlaylist.SelectedIndex)
+            while (selction == int_dtgIndx)
             {
                 selction = rand.Next(0, musikList.Count);
             }
             dtgPlaylist.SelectedIndex = selction;
             btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+        }
+        private void btnForward_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnShuffle.Foreground == Brushes.LightGreen)
+            {
+                ShuffleRandom();
+            }
+            else
+            {
+                if (int_dtgIndx == musikList.Count - 1)
+                {
+                    dtgPlaylist.SelectedIndex = 0;
+                    btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                }
+                else
+                {
+                    int_dtgIndx += 1;
+                    dtgPlaylist.SelectedIndex = int_dtgIndx;
+                    btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                }
+            }
+        }
+        private void btnBackward_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnShuffle.Foreground == Brushes.LightGreen)
+            {
+                ShuffleRandom();
+            }
+            else
+            {
+                if (int_dtgIndx == 0)
+                {
+                    dtgPlaylist.SelectedIndex = musikList.Count - 1;
+                    btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                }
+                else
+                {
+                    int_dtgIndx -= 1;
+                    dtgPlaylist.SelectedIndex = int_dtgIndx;
+                    btnPlay.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                }
+            }
         }
 
 
@@ -482,5 +557,6 @@ namespace Abschussprojekt_wolf
         {
             Application.Current.Shutdown();
         }
+
     }
 }
