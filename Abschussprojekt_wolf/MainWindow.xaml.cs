@@ -52,7 +52,7 @@ namespace Abschussprojekt_wolf
         bool v = true;
         bool y = false;
         bool x = true;
-        object women;
+        object obj;
         string button;
         Musik musikClass;
         TimeSpan editDuration;
@@ -305,25 +305,25 @@ namespace Abschussprojekt_wolf
                 if (btnPlay.Content.ToString() == start)
                 {
                     Musik path = (Musik)dtgPlaylist.SelectedItem;
-                    women = dtgPlaylist.SelectedItem;
+                    obj = dtgPlaylist.SelectedItem;
                     Uri mp3 = new Uri(path.Path, UriKind.Relative);
                     mediaElement.Source = mp3;
                     mediaElement.Play();
-                    Animation((Musik)women);
+                    Animation((Musik)obj);
                     button = pause;
                     lblNowPlaying.Content = $"Now Playing: {path.Titel}";
                     btnPlay.Content = pause;
                 }
                 else if (btnPlay.Content.ToString() == pause)
                 {
-                    Animation((Musik)women);
+                    Animation((Musik)obj);
                     mediaElement.Pause();
                     btnPlay.Content = weiter;
                     button = weiter;
                 }
                 else if (btnPlay.Content.ToString() == weiter)
                 {
-                    Animation((Musik)women);
+                    Animation((Musik)obj);
                     mediaElement.Play();
                     btnPlay.Content = pause;
                     button = pause;
@@ -338,7 +338,7 @@ namespace Abschussprojekt_wolf
         private void dtgPlaylist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (women != dtgPlaylist.SelectedItem)
+            if (obj != dtgPlaylist.SelectedItem)
             {
                 btnPlay.Content = start;
             }
@@ -431,7 +431,7 @@ namespace Abschussprojekt_wolf
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
             x = false;
-            Animation((Musik)women);
+            Animation((Musik)obj);
             btnPlay.Content = pause;
         }
 
