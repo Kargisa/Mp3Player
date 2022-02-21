@@ -87,7 +87,7 @@ namespace Abschussprojekt_wolf
             {
                 MessageBox.Show("Das Icon konnte nicht gefunden werden.");
             }
-            
+
         }
         private void SliderValue()
         {
