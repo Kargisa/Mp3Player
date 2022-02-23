@@ -250,15 +250,19 @@ namespace Abschussprojekt_wolf
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (btnPlay.Content.ToString() != start)
+            if (btnPlay.Content.ToString() != start && btnPlay.Content.ToString() != weiter)
             {
                 MessageBox.Show("Musik die gerade läuft, kann nicht bearbeitet werden.");
             }
             else if (btnEdit.Content.ToString() == "Edit")
             {
-                try
+                musikClass = (Musik)dtgPlaylist.SelectedItem;
+                if (musikClass == null)
                 {
-                    musikClass = (Musik)dtgPlaylist.SelectedItem;
+                    MessageBox.Show("Wählen Sie ein Musikstück aus.");
+                }
+                else
+                {
                     txtTitel.Text = musikClass.Titel;
                     txtArtist.Text = musikClass.Artist;
                     txtAlbum.Text = musikClass.Album;
@@ -273,10 +277,6 @@ namespace Abschussprojekt_wolf
                     }
                     btnResetEdit.Visibility = Visibility.Visible;
                     btnEdit.Content = "finish Edit";
-                }
-                catch (NullReferenceException)
-                {
-                    MessageBox.Show("Wählen Sie ein Musikstück aus.");
                 }
             }
             else
@@ -299,39 +299,37 @@ namespace Abschussprojekt_wolf
         }
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                int_dtgIndx = dtgPlaylist.SelectedIndex;
-                if (btnPlay.Content.ToString() == start)
-                {
-                    Musik path = (Musik)dtgPlaylist.SelectedItem;
-                    obj = dtgPlaylist.SelectedItem;
-                    Uri mp3 = new Uri(path.Path, UriKind.Relative);
-                    mediaElement.Source = mp3;
-                    mediaElement.Play();
-                    Animation((Musik)obj);
-                    button = pause;
-                    lblNowPlaying.Content = $"Now Playing: {path.Titel}";
-                    btnPlay.Content = pause;
-                }
-                else if (btnPlay.Content.ToString() == pause)
-                {
-                    Animation((Musik)obj);
-                    mediaElement.Pause();
-                    btnPlay.Content = weiter;
-                    button = weiter;
-                }
-                else if (btnPlay.Content.ToString() == weiter)
-                {
-                    Animation((Musik)obj);
-                    mediaElement.Play();
-                    btnPlay.Content = pause;
-                    button = pause;
-                }
-            }
-            catch (NullReferenceException)
+
+            int_dtgIndx = dtgPlaylist.SelectedIndex;
+            if (int_dtgIndx == -1)
             {
                 MessageBox.Show("Bitte wähle einen Song aus.");
+            }
+            else if (btnPlay.Content.ToString() == start)
+            {
+                Musik path = (Musik)dtgPlaylist.SelectedItem;
+                obj = dtgPlaylist.SelectedItem;
+                Uri mp3 = new Uri(path.Path, UriKind.Relative);
+                mediaElement.Source = mp3;
+                mediaElement.Play();
+                Animation((Musik)obj);
+                button = pause;
+                lblNowPlaying.Content = $"Now Playing: {path.Titel}";
+                btnPlay.Content = pause;
+            }
+            else if (btnPlay.Content.ToString() == pause)
+            {
+                Animation((Musik)obj);
+                mediaElement.Pause();
+                btnPlay.Content = weiter;
+                button = weiter;
+            }
+            else if (btnPlay.Content.ToString() == weiter)
+            {
+                Animation((Musik)obj);
+                mediaElement.Play();
+                btnPlay.Content = pause;
+                button = pause;
             }
 
         }
@@ -439,7 +437,8 @@ namespace Abschussprojekt_wolf
         {
             if (v == false)
             {
-                mediaElement.Volume = sldVolume.Value;
+                mediaElement.Volume = sldVolume.Value * 0.5;
+                //Console.WriteLine(mediaElement.Volume);
                 sound = sldVolume.Value;
                 string vol = Convert.ToString(sound);
                 File.WriteAllText(volumePath, vol);
