@@ -74,6 +74,7 @@ namespace Abschussprojekt_wolf
             FullTimer();
             SearchForFiles();
             btnShuffle.Foreground = Brushes.White;
+            obj = dtgPlaylist.SelectedItem;
             load.Close();
         }
         private void IconMeth()
@@ -208,11 +209,12 @@ namespace Abschussprojekt_wolf
         }
         private void btnMusikRemove_Click(object sender, RoutedEventArgs e)
         {
-            if (btnPlay.Content.ToString() == start && btnEdit.Content.ToString() == "Edit")
+            if (btnPlay.Content.ToString() != pause && btnEdit.Content.ToString() == "Edit")
             {
                 if (dtgPlaylist.SelectedValue != (object)-1)
                 {
                     Musik selected = (Musik)dtgPlaylist.SelectedItem;
+
                     using (StreamReader r = new StreamReader(jsonPath))
                     {
                         var jsonRead = r.ReadToEnd();
@@ -237,6 +239,7 @@ namespace Abschussprojekt_wolf
                     var json = JsonConvert.SerializeObject(saveList);
                     File.WriteAllText(jsonPath, json);
                     morePaths.Clear();
+
                 }
                 else
                 {
